@@ -1,0 +1,31 @@
+nav {
+  background-color: #000;
+  font-size: 21px;
+}
+nav span {
+  color: white;
+}
+.nav-link {
+  color: #7A7A7ACC;
+}
+.nav-link.active {
+  color: #FFFFFFCC;
+}
+.nav-link:focus {
+  color: #7A7A7ACC;
+}
+.nav-link:hover {
+  color: #FFFFFF;
+}
+.profile-image, .cart-image {
+    align-self: center;
+    min-height: 100px;
+    min-width: 100px;
+    background-color: #fff;
+}
+.desc-comment-container:not(:first-child) {
+    border-top: 2px dashed black;
+}
+.desc-comment-date {
+    color: var(--gray-font);
+}

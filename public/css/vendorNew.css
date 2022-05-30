@@ -1,0 +1,56 @@
+nav {
+  background-color: #000;
+  font-size: 21px;
+}
+nav span {
+  color: white;
+}
+.nav-link {
+  color: #7A7A7ACC;
+}
+.nav-link.active {
+  color: #FFFFFFCC;
+}
+.nav-link:focus {
+  color: #7A7A7ACC;
+}
+.nav-link:hover {
+  color: #FFFFFF;
+}
+.navbar img {
+  display: block;
+  background-color: #fff;
+  min-height: 50px;
+  min-width: 50px;
+}
+
+#new-game-tags div:first-child {
+  width: fit-content;
+}
+#new-tag{
+  background-color: transparent;
+  max-width: fit-content !important;
+  border: none;
+  padding: 0 15px;
+  font-size: 18px;
+  user-select: none;
+  white-space: nowrap;
+}
+
+#img-container {
+    border: 1.7px dashed rgb(91, 91, 91);
+    cursor: cell;
+    height: fit-content;
+}
+
+#img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+#new-game-form {
+  border: 1.7px dashed rgb(91, 91, 91);
+}
