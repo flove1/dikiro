@@ -69,16 +69,17 @@
         </div>
 
         <div id="search-tags" class="col-12 gap-2 my-3 row">
-          <div class="tag col fs-4">Action</div>
-          <div class="tag col fs-4">Strategy</div>
-          <div class="tag col fs-4">Card</div>
-          <div class="tag col fs-4">Roleplay</div>
-          <div class="tag col fs-4">Family</div>
+          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Action')->count() == 1) tag-active @endif">Action</div>
+          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Strategy')->count() == 1) tag-active @endif">Strategy</div>
+          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Card')->count() == 1) tag-active @endif">Card</div>
+          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Ropeplay')->count() == 1) tag-active @endif">Roleplay</div>
+          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Family')->count() == 1) tag-active @endif">Family</div>
+        <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Random')->count() == 1) tag-active @endif">Random</div>
         </div>
 
         <div class="my-3 fs-4">Quantity: {{ $item->count }}</div>
 
-        <button class="btn btn-custom rounded fs-3" onclick="showComments({{ $item->id }})">Comments</button>
+        <button class="btn btn-bright rounded fs-3 text-white" onclick="showComments({{ $item->id }})">Comments</button>
 
       </div>
     </div>

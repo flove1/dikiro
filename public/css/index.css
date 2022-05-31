@@ -14,7 +14,12 @@
     border-radius: 20px;
     box-shadow: 10px 10px 5px #00000020;
 }
-
+#search-list:empty::after {;
+    padding: 100px;
+    font-size: 20px;
+    color: black;
+    content: "There is no such games that match filters";
+}
 #cart-modal .modal-content, #cart-modal .modal-body{
     background-color: #faf4ec;
 }
@@ -131,6 +136,10 @@
   border: 1px solid var(--btn);
   color: var(--btn);
 }
+.modal-footer #desc-add:hover {
+    background-color: var(--btn);
+    color: white;
+}
 .modal-footer #desc-buy {
   background-color: var(--btn);
   border: 1px solid var(--btn);
@@ -192,8 +201,23 @@
   min-height: 75px;
   min-width: 75px;
 }
-#cart-buy {
-  background-color: var(--btn);
+.btn-page {
+    aspect-ratio: 1;
+    background-color: var(--body-bg);
+    border: 2px solid #000;
+    outline: none;
+}
+.btn-page:focus {
+    box-shadow: none;
+}
+.btn-page:hover {
+    background-color: var(--accent-bg);
+}
+.btn-page:active {
+    background-color: var(--btn-transparent);
+}
+.btn-page.selected {
+    background-color: var(--btn-transparent);
 }
 .desc-comment-container:not(:first-child) {
     border-top: 2px dashed black;

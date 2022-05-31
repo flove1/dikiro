@@ -26,18 +26,18 @@
 <body>
     <div class="navbar">
         <div class="container-fluid row justify-content-evenly">
-            <div id="container-choose-city" class="col-1 col-sm-5">
-                <a class="navbar-text">Astana</a>
-            </div>
-            <div class="navbar-text col-9 col-sm-2">DIKIRO</div>
+{{--            <div id="container-choose-city" class="col-1 col-sm-5">--}}
+{{--                <a class="navbar-text">Astana</a>--}}
+{{--            </div>--}}
+            <div class="navbar-text col-9 col-sm-2" style="cursor: pointer" onclick="window.location='/'">DIKIRO</div>
             <div class="col-12 col-sm-5 d-flex justify-content-end text-light rounded-pill">
                 <!-- <form class="input-group flex-grow-1">
                     <input class="form-control rounded-pill rounded-end" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-light rounded-pill rounded-start pe-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form> -->
                 @unless(Auth::check())
-                    <button onclick="window.location.href='/register'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Sign up</button>
-                    <button onclick="window.location.href='/login'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Login</button>
+                    <button onclick="window.location.href='/register'" class="btn btn-light rounded-pill text-nowrap px-3 py-3 me-2">Sign up</button>
+                    <button onclick="window.location.href='/login'" class="btn btn-light rounded-pill text-nowrap px-3 py-3 me-2">Login</button>
                 @else
                 <img class="rounded-circle mx-2"/>
                 <button class="btn btn-light fs-4 rounded"> Personal cabinet</button>

@@ -34,4 +34,10 @@ Route::get('comments/{id}', function ($id) {
     return $object;
 });
 
-Route::get('/vendor/new/{id}', array('as' => 'group', 'uses' => 'App\Http\Controllers\VendorController@vendorNew'));
+Route::get('/vendor/new/{id}', array('as' => 'newItem', 'uses' => 'App\Http\Controllers\VendorController@vendorNew'));
+
+Route::get('/items/{id}',  array('as' => 'getItem', 'uses' => '\App\Http\Controllers\ItemController@getItem'));
+
+Route::get('/tags/{id}',  array('as' => 'getTags', 'uses' => '\App\Http\Controllers\ItemController@getTags'));
+
+Route::get('/items/{from}/{count}',  array('as' => 'getItems', 'uses' => '\App\Http\Controllers\ItemController@getItems'));

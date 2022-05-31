@@ -13,28 +13,30 @@ function readURL(input) {
     }
 }
 
-// $("#new-game-form").submit(function (event) {
-//     event.preventDefault();
-//     let data = new FormData($(this)[0]);
-//     let tagsArray = [];
-//     $(".tag-active").each(function() {
-//         tagsArray.push({tag: $(this).text()})
-//     });
-//     data.append("tags", JSON.stringify(tagsArray));
-//     $.ajax({
-//         type: "PUT",
-//         url: "/items",
-//         processData: false,
-//         data: data,
-//         dataType: "json",
-//         enctype: 'multipart/form-data'
-//     }).done(function(data) {
-//         window.location.replace("/vendor");
-//     })
-// });
+$("#new-game-form").submit(function (event) {
+    event.preventDefault();
+    let data = new FormData($(this)[0]);
+    let tagsArray = [];
+    $(".tag-active").each(function() {
+        tagsArray.push($(this).text())
+    });
+    data.append("tags", JSON.stringify(tagsArray));
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "/items",
+        processData: false,
+        contentType: false,
+        data: data,
+        enctype: 'multipart/form-data'
+    }).done(function() {
+        window.location.replace("/vendor");
+    })
+});
 
 $(".tag").each(function() {
-    $(this).removeClass("tag-active");
     $(this).click(function() {
         if ($(this).hasClass("tag-active")) {
             $(this).removeClass("tag-active");

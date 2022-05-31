@@ -20,10 +20,6 @@ return new class extends Migration
             $table->string('password', 100);
             $table->string('name', 100);
             $table->enum('role', ['customer', 'admin']);
-            $table->string('api_token', 80)
-                ->unique()
-                ->nullable()
-                ->default(null);
         });
         Schema::create('items', function (Blueprint $table) {
             $table->id();

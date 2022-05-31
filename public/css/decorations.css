@@ -27,6 +27,9 @@ img {
 body {
   background-color: var(--body-bg);
 }
+.btn-bright {
+    background-color: var(--btn);
+}
 .rounded {
   border-radius: 16px !important;
 }

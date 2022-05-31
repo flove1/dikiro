@@ -21,5 +21,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::put('/items', 'App\Http\Controllers\VendorController@newItem');
 Route::delete('/items/{id}', array('as' => 'delete', 'uses' => '\App\Http\Controllers\VendorController@vendorDelete'));
 
-
 Auth::routes();

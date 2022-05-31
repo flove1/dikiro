@@ -132,24 +132,32 @@
 
     <div id="content" class="container-sm pb-5 mb-5">
       <div class="search-tags col-10 col-md-8 gap-2 my-4 mx-auto row">
-        <div class="tag col">Action</div>
+        <div class="tag col" >Action</div>
         <div class="tag col">Strategy</div>
         <div class="tag col">Card</div>
         <div class="tag col">Roleplay</div>
-        <div class="tag col">Family</div>
+          <div class="tag col">Family</div>
+          <div class="tag col">Random</div>
       </div>
+
+        <div id="btn-page-container" class="container mx-auto d-flex justify-content-center gap-2 mb-3">
+            @for($i = 1; $i <= ceil($items->count()/20); $i++)
+                <button class="btn btn-page px-3" onclick="showItems(this, {{  ($i-1)*20 }}, {{ ($items->count()-($i-1)*20)>20?20:($items->count()-($i-1)*20)%20 }})">{{ $i }}</button>
+            @endfor
+        </div>
+
       <div id="search-list" class="container mx-auto row justify-content-evenly gap-4 gy-3 gy-md-5">
 
-        @foreach($items as $item)
-        <div class="item col-11 col-md-3 p-4" onclick="showDesc('{{ json_encode($item) }}')">
-          <img src=" {{ $item->img_path }} " class="rounded">
-          <div class="item-title">{{ $item->name }}</div>
-          <div class="tag-container gap-2 mb-3">
-            <div class="tag tag-active">Card</div>
-            <div class="tag tag-active">Family</div>
-          </div>
-        </div>
-        @endforeach
+{{--        @foreach($items as $item)--}}
+{{--        <div class="item col-11 col-md-3 p-4" onclick="showDesc('{{ json_encode($item) }}')">--}}
+{{--          <img src=" {{ $item->img_path }} " class="rounded">--}}
+{{--          <div class="item-title">{{ $item->name }}</div>--}}
+{{--          <div class="tag-container gap-2 mb-3">--}}
+{{--            <div class="tag tag-active">Card</div>--}}
+{{--            <div class="tag tag-active">Family</div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        @endforeach--}}
 
       </div>
     </div>
