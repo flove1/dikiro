@@ -37,6 +37,10 @@ nav span {
   white-space: nowrap;
 }
 
+#new-game-description {
+    min-height: 30vh;
+}
+
 #img-container {
     border: 1.7px dashed rgb(91, 91, 91);
     cursor: cell;

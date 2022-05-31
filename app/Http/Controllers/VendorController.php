@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class VendorController extends Controller
         $this->middleware('auth');
     }
 
-    public function vendor() {
+    public static function vendor() {
         if (Auth::user()->role == "admin") {
             return view("vendor");
         }
@@ -24,12 +25,34 @@ class VendorController extends Controller
         }
     }
 
-    public function vendorNew() {
+    public static function vendorNew($id = null) {
         if (Auth::user()->role == "admin") {
-            return view("vendorNew");
-        }
+            if ($id != null) {
+                $item = Item::find($id);
+                return view("vendorNew", compact("item"));
+            }
+            else {
+                return view("vendorNew");
+            }
+            }
         else {
             return view("index");
+        }
+    }
+
+    public function newItem(Request $request) {
+        Item::store($request);
+        return view('vendor');
+    }
+
+    public static function vendorDelete($id)
+    {
+        if (Auth::check()) {
+            Item::find($id)->delete();
+            return response('succ', 200);
+        }
+        else {
+            return response('notsucc', 500);
         }
     }
 }

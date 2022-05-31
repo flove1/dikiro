@@ -35,13 +35,17 @@
                     <input class="form-control rounded-pill rounded-end" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-light rounded-pill rounded-start pe-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form> -->
+                @unless(Auth::check())
+                    <button onclick="window.location.href='/register'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Sign up</button>
+                    <button onclick="window.location.href='/login'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Login</button>
+                @else
                 <img class="rounded-circle mx-2"/>
-                <button onclick="window.location.href='/register'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Sign up</button>
-                <button onclick="window.location.href='/login'" class="btn btn-light rounded-pill text-nowrap px-3 me-2">Login</button>
-                <form class="d-flex" action="/logout" method="post">
+                <button class="btn btn-light fs-4 rounded"> Personal cabinet</button>
+                <form class="d-flex mx-2" action="/logout" method="post">
                     @csrf
-                    <input class="btn btn-light rounded-pill text-nowrap px-3" type="submit" value="Logout">
+                    <input class="btn btn-light rounded-pill text-nowrap fs-4 px-3" type="submit" value="Logout">
                 </form>
+                @endunless
             </div>
         </div>
     </div>

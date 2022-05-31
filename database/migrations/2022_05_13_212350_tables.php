@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    
+
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('email', 100);
             $table->string('password', 100);
             $table->string('name', 100);
-            $table->string('token')->nullable();
             $table->enum('role', ['customer', 'admin']);
+            $table->string('api_token', 80)
+                ->unique()
+                ->nullable()
+                ->default(null);
         });
         Schema::create('items', function (Blueprint $table) {
             $table->id();
@@ -36,14 +39,14 @@ return new class extends Migration
             $table->foreign('item_id')->references('id')->on('items');
             $table->integer('count');
             $table->bigInteger('customer_id', unsigned:true);
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
         });
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('item_id', unsigned:true);
-            $table->foreign('item_id')->references('id')->on('items')->cascadeOnDelete();
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->bigInteger('customer_id', unsigned:true);
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('comment');
             $table->date('date');
         });
@@ -51,7 +54,7 @@ return new class extends Migration
             $table->id();
             $table->string('tag', 100);
             $table->bigInteger('item_id', unsigned:true);
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
     }
 

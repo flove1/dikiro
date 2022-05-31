@@ -34,7 +34,4 @@ Route::get('comments/{id}', function ($id) {
     return $object;
 });
 
-Route::post('items', function (Request $request) {
-    Item::store($request);
-    return 1;
-});
+Route::get('/vendor/new/{id}', array('as' => 'group', 'uses' => 'App\Http\Controllers\VendorController@vendorNew'));

@@ -17,7 +17,17 @@ function showComments(id) {
                     </div>\
                 </div>')
             }
+            if (comments.length == 0) {
+                $("#desc-comments").html('<div class="desc-comment-container container-fluid py-4 mx-auto"> <p class="text-center fs-3 m-0">No comments</p></div>');
+            }
         });
 
     descModal.show();
 }
+
+$('form').submit(function () {
+    form = $(this);
+    setTimeout(function() {
+        $(form).closest('.item').remove()
+    }, 100);
+})

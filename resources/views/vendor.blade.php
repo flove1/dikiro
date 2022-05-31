@@ -32,7 +32,7 @@
   <div class="modal fade my-3" tabindex="-1">
     <div id="comments-dialog" class="modal-dialog modal-lg">
       <div class="modal-content rounded">
-        <div id="desc-comments" class="modal-body">
+        <div id="desc-comments" class="modal-body rounded">
           <div class="container-fluid row">
             <div class="profile-image col-1 rounded-circle"></div>
             <div class="col">
@@ -48,21 +48,29 @@
 
   <div id="content" class="container my-5">
 
+      <iframe name="votar" style="display:none;"></iframe>
+
     @foreach($items as $item)
-    <div class="row my-5">
+    <div class="item row my-5 p-3">
       <div class="col-3">
-        <img src="{{ $item->img_path }}"/>
+        <img src="{{ $item->img_path }}" class="rounded" style="transform: translateY(-50%); position: relative; top: 50%"/>
       </div>
       <div class="col gx-5">
         <div class="row">
           <div class="col-7 fs-2 my-auto">{{ $item->name }}</div>
           <div class="col-3 fs-2 my-auto text-end text-nowrap">{{ $item->price }} kzt</div>
-          <button class="col btn btn-outline-dark rounded fs-3 my-auto"><i class="fas fa-pen"></i></button>
+          <button class="col btn btn-outline-dark rounded fs-3 my-auto" onclick="window.location='vendor/new/'.concat({{ $item->id }})"><i class="fas fa-pen"></i></button>
+        <form method="POST" action="/items/{{ $item->id }}" class="col" target="votar">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="id" value="{{ $item->id }}">
+            <button class="btn btn-outline-danger rounded ms-2 fs-2" type="submit">X</button>
+        </form>
         </div>
 
         <div id="search-tags" class="col-12 gap-2 my-3 row">
           <div class="tag col fs-4">Action</div>
-          <div class="tag tag-active col fs-4">Strategy</div>
+          <div class="tag col fs-4">Strategy</div>
           <div class="tag col fs-4">Card</div>
           <div class="tag col fs-4">Roleplay</div>
           <div class="tag col fs-4">Family</div>

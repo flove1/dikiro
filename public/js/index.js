@@ -14,7 +14,16 @@ $('#desc-toggle-comments').change(function() {
   }
 });
 
-let descModal = new window.bootstrap.Modal(document.getElementsByClassName("modal").item(0), 'data-bs-focus=""');
+
+let descModal = new window.bootstrap.Modal(document.getElementById('desc-modal'), 'data-bs-focus=""');
+
+let cartModal = new window.bootstrap.Modal(document.getElementById('cart-modal'), 'data-bs-focus=""');
+
+// cartModal.show();
+
+function showCart() {
+    cartModal.show();
+}
 
 function showDesc(item) {
   let object = JSON.parse(item);
@@ -24,13 +33,13 @@ function showDesc(item) {
   $("#desc-count").text(object.count);
   $("#desc-image img").attr("src", object.img_path);
   $("#desc-images").empty();
-  $("#desc-images").append('<img class="active" src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
-  $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img class="active" src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
+  // $("#desc-images").append('<img src="' + object.img_path + '" alt="">');
 
   $("#desc-comments").empty();
 
@@ -47,6 +56,9 @@ function showDesc(item) {
                         <p class="desc-comment fs-5">' + comments[i].comment + '</p>\
                     </div>\
                 </div>')
+        }
+        if (comments.length == 0) {
+            $("#desc-comments").html('<div class="desc-comment-container container-fluid py-4 mx-auto"> <p class="text-center fs-3 m-0">No comments</p></div>');
         }
     });
 
@@ -66,7 +78,7 @@ function showDesc(item) {
   descModal.show();
 }
 
-$("#search-tags .tag").click(function() {
+$(".search-tags .tag").click(function() {
     if ($(this).hasClass("tag-active")) {
         $(this).removeClass("tag-active");
     }

@@ -13,6 +13,7 @@ class ItemFactory extends Factory
             'price' => $this->faker->randomNumber(),
             'count' => $this->faker->randomNumber(),
             'desc' => $this->faker->text(),
+            'img_path' => 'img/1.png'
         ];
     }
 }

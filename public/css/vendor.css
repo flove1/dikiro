@@ -29,3 +29,9 @@ nav span {
 .desc-comment-date {
     color: var(--gray-font);
 }
+.item {
+    background-color: #faf4ec;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px #00000020;
+}
