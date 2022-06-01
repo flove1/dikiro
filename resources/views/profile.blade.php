@@ -11,7 +11,7 @@
     <div id="content" class="container my-5">
         <iframe name="votar" style="display:none;"></iframe>
 
-        <form id="edit-profile" class="container-fluid row p-5" method="POST" enctype="multipart/form-data" action="/cabinet">
+        <form id="edit-profile" class="container-fluid row p-5" method="POST" enctype="multipart/form-data" action="{{ route('userUpdate') }}">
             @csrf
             @method('PUT')
             @isset($item) <input type="hidden" name="id" value="{{ $item->id }}" required> @endisset

@@ -63,7 +63,7 @@
                 <div class="modal-footer" >
                     @if (\Illuminate\Support\Facades\Auth::check())
                     <div class="flex-fill gap-3">
-                        <form method="post" class="d-flex justify-content-end align-items-center" action="/cart" target="votar">
+                        <form method="post" class="d-flex justify-content-end align-items-center" action="{{ route('addToCart') }}" target="votar">
                             @csrf
                             @method('POST')
                             <input id="cart-item-count" class="rounded py-2 px-1 col-1 me-2 text-center fs-5" type="text" name="count" placeholder="Count...">
@@ -77,7 +77,7 @@
         </div>
         <div id="comments-dialog" class="modal-dialog modal-lg">
             <div class="modal-content rounded">
-                <form id="new-comment" method="post" action="/comments">
+                <form id="new-comment" method="post" action="{{ route('saveComment') }}">
                     @csrf
                     <input id="comment-id" type="hidden" name="id">
                     <div class="d-flex m-3 align-items-center">
