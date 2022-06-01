@@ -67,12 +67,13 @@ function showItems(element, from, count) {
                         }
                     });
                 $("#search-list").append(
-                    `<div id="item-${items[i].id}" class="item col-11 col-md-3 p-4" onClick="showDesc(${items[i].id})">\
+                    `<div id="item-${items[i].id}" class="item col-11 col-md-3 p-4 d-flex flex-column justify-content-between" onClick="showDesc(${items[i].id})">\
                         <img src="${items[i].img_path}" class="rounded">\
+                            <div class="container">\
                             <div class="item-title">${items[i].name}</div>\
-                            <div class="tag-container gap-2 mb-3 row">\
-                            </div>\
+                            <div class="tag-container gap-2 mb-3 row"></div>\
                             <div class="text-center fs-4"><b>${items[i].price}</b> kzt</div>\
+                            </div>
                     </div>`);
             }
         });
@@ -114,7 +115,9 @@ function showCart() {
                                 <span class="fs-5 text-end "> kzt</span>\
                                 <span class="fs-4 text-end "> * </span>\
                                 <span class="fs-4 text-end fw-bold">${response[i].count}</span>\
-                                <span class="fs-5 text-end "> pcs</span>\
+                                <span class="fs-5 text-end "> pcs = </span>\
+                                <span class="fs-4 text-end fw-bold"> ${response[i].item.price * response[i].count}</span>\
+                                <span class="fs-5 text-end "> kzt</span>\
                             </div>\
                             <button class="col btn btn-outline-danger rounded ms-2 fs-2" onclick="deleteCart(${response[i].id}, ${response[i].item.price * response[i].count})">X</button>\
 
@@ -164,8 +167,8 @@ function showDesc(id) {
                 .then(comments => {
                     for (let i=0; i < comments.length; i++) {
                         $("#desc-comments").append(`\
-                <div class="desc-comment-container container-fluid row py-4 mx-auto">\
-                    <img class="profile-image col-1 rounded-circle" src="${comments[i].img_path}">\
+                <div class="desc-comment-container container-fluid row py-4 mx-auto rounded">\
+                    <img class="profile-image rounded-circle" style="padding: 0" src="${comments[i].img_path}">\
                     <div class="col">\
                         <div class="desc-comment-name fs-4">${comments[i].name}</div>\
                         <div class="desc-comment-date fs-5">${comments[i].date}</div>\

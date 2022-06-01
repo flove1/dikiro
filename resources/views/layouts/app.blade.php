@@ -29,8 +29,8 @@
 {{--            <div id="container-choose-city" class="col-1 col-sm-5">--}}
 {{--                <a class="navbar-text">Astana</a>--}}
 {{--            </div>--}}
-            <div class="navbar-text col-9 col-sm-2" style="cursor: pointer" onclick="window.location='/'">DIKIRO</div>
-            <div class="col-12 col-sm-5 d-flex justify-content-end text-light rounded-pill">
+            <div class="navbar-text col-5 col-lg-3" style="cursor: pointer" onclick="window.location='/'">DIKIRO</div>
+            <div class="col-7 col-lg-5 d-flex justify-content-end text-light rounded-pill">
                 <!-- <form class="input-group flex-grow-1">
                     <input class="form-control rounded-pill rounded-end" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-light rounded-pill rounded-start pe-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -39,11 +39,11 @@
                     <button onclick="window.location.href='/register'" class="btn btn-light rounded text-nowrap px-3 py-2 me-3 fs-5">Sign up</button>
                     <button onclick="window.location.href='/login'" class="btn btn-light rounded text-nowrap px-3 py-2 fs-5">Login</button>
                 @else
-                <button class="btn btn-light rounded me-2 my-2 fs-5" onclick="window.location='/cabinet'">Personal cabinet</button>
+                <button class="btn btn-light rounded me-2 my-2 px-3 text-nowrap fs-5" onclick="window.location='/cabinet'">Profile</button>
                 @if (Auth::user()->role == "admin")
-                    <button class="btn btn-light rounded me-2 my-2 fs-5" onclick="window.location='/vendor'">Admin page</button>
+                    <button class="btn btn-light rounded me-2 my-2 px-3 fs-5 text-nowrap" onclick="window.location='/vendor'">Admin page</button>
                 @endif
-                    <img class="rounded-circle mx-2" src="{{ asset(Auth::user()->img_path) }}"/>
+                    <img class="rounded-circle mx-2" style="border: 2px dashed black" src="{{ asset(Auth::user()->img_path) }}"/>
                 <form class="d-flex mx-2" action="/logout" method="post">
                     @csrf
                     <input class="btn btn-light rounded text-nowrap fs-5 my-2 px-3" type="submit" value="Logout">
@@ -56,13 +56,13 @@
     <footer class="container-fluid">
         <div class="container-lg py-3 row mx-auto justify-content-center">
             <div class="col-5">
-                <h5>Возникли вопросы?</h5>
+                <h5>Have any questions?</h5>
                 <div>+7 777 777 77 77</div>
                 <div>+7 777 777 77 77</div>
                 <div>+7 777 777 77 77</div>
             </div>
             <div class="col-4 d-block">
-                <h5 >Мы находимся:</h5>
+                <h5 >We are located:</h5>
                 <div>Ул. Улица 1</div>
             </div>
             <div class="col-3">

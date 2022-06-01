@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
         <ul class="navbar-nav text-center gap-1 gap-sm-5">
           <li class="nav-item">
-            <a class="nav-link active">Catalogue</a>
+            <a class="nav-link active user-select-none">Catalogue</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/vendor/new">Add a game</a>
@@ -52,7 +52,7 @@
 
     @foreach($items as $item)
     <div class="item row my-5 p-3">
-      <div class="col-3 d-flex">
+      <div class="col-3 align-items-center">
         <img src="{{ $item->img_path }}" class="rounded" style="transform: translateY(-50%); position: relative; top: 50%"/>
       </div>
       <div class="col gx-5">

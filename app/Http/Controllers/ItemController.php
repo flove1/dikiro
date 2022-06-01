@@ -61,6 +61,21 @@ class ItemController extends Controller
             return response(Item::all()->count(), 200);
         }
     }
+    public function getComments($id) {
+        $comments = Item::find($id)->comments;
+        $object = [];
+        foreach ($comments as $comment) {
+            $object[] = [
+                'id' => $comment->customer_id,
+                'name' => User::find($comment->customer_id)->name,
+                'img_path' => User::find($comment->customer_id)->img_path,
+                'date' => $comment->date,
+                'comment' => $comment->comment
+            ];
+        }
+        return $object;
+    }
+
     public function saveComment(Request $request) {
         $comment = new Comment;
         $comment->customer_id = Auth::user()->id;

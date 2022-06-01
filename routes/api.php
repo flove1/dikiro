@@ -20,27 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('comments/{id}', function ($id) {
-    $comments = Item::find($id)->comments;
-    $object = [];
-    foreach ($comments as $comment) {
-        $object[] = [
-            'id' => $comment->customer_id,
-            'name' => User::find($comment->customer_id)->name,
-            'img_path' => User::find($comment->customer_id)->img_path,
-            'date' => $comment->date,
-            'comment' => $comment->comment
-        ];
-    }
-    return $object;
-});
+Route::get('comments/{id}', '\App\Http\Controllers\ItemController@getComments');
 
-Route::get('/vendor/new/{id}', array('as' => 'newItem', 'uses' => 'App\Http\Controllers\VendorController@vendorNew'));
+Route::get('/vendor/new/{id}', 'App\Http\Controllers\VendorController@vendorNew');
 
-Route::get('/items/{id}',  array('as' => 'getItem', 'uses' => '\App\Http\Controllers\ItemController@getItem'));
+Route::get('/items/{id}',  '\App\Http\Controllers\ItemController@getItem');
 
-Route::get('/tags/{id}',  array('as' => 'getTags', 'uses' => '\App\Http\Controllers\ItemController@getTags'));
+Route::get('/tags/{id}',  '\App\Http\Controllers\ItemController@getTags');
 
 Route::get('/count',  '\App\Http\Controllers\ItemController@getItemsCount');
 
-Route::get('/items/{from}/{count}',  array('as' => 'getItems', 'uses' => '\App\Http\Controllers\ItemController@getItems'));
+Route::get('/items/{from}/{count}',  '\App\Http\Controllers\ItemController@getItems');

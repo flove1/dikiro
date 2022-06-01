@@ -34,7 +34,7 @@ body {
   border-radius: 16px !important;
 }
 .modal-content, .modal-body {
-  background-color: var(--dialog-bg);
+  background-color: var(--body-bg);
 }
 .navbar img {
     aspect-ratio: 1;

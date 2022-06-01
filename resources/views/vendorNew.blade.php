@@ -18,10 +18,10 @@
                         <a class="nav-link" href="/vendor">Catalogue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active">Add a game</a>
+                        <a class="nav-link active user-select-none">Add a game</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Orders</a>
+                        <a class="nav-link" href="/vendor/orders">Orders</a>
                     </li>
                 </ul>
             </div>

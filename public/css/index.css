@@ -108,6 +108,7 @@
   height: fit-content;
 }
 #desc-image img {
+    border: 2px dashed black;
   transition: 0.3s;
   transition-timing-function: linear;
 }
@@ -135,9 +136,9 @@
   border-radius: 50px;
 }
 .modal-footer #desc-add {
-  background-color: var(--body-bg);
+  background-color: var(--accent-bg);
   border: 1px solid var(--btn);
-  color: var(--btn);
+  color: black;
 }
 .modal-footer #desc-add:hover {
     background-color: var(--btn);
@@ -204,8 +205,11 @@
 }
 .profile-image, .cart-image {
   align-self: center;
-  min-height: 100px;
-  min-width: 100px;
+    min-height: 100px;
+    min-width: 100px;;
+    max-height: 100px;
+    max-width: 100px;
+    outline: 4px dashed gray;
   background-color: #fff;
 }
 .cart-image {
@@ -230,8 +234,11 @@
 .btn-page.selected {
     background-color: var(--btn-transparent);
 }
+.desc-comment-container {
+    border: 2px dashed black;
+}
 .desc-comment-container:not(:first-child) {
-    border-top: 2px dashed black;
+    margin-top: 10px;
 }
 .desc-comment-date {
   color: var(--gray-font);

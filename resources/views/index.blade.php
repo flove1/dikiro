@@ -12,7 +12,7 @@
       <div>Just click on the image to see more.</div>
     </div>
 
-    <div id="desc-modal" class="modal fade my-3" tabindex="-1" >
+    <div id="desc-modal" class="modal fade my-3 pb-4" tabindex="-1" >
         <div id="desc" class="modal-dialog modal-xl">
             <div class="modal-content rounded">
                 <div class="modal-header py-4">
@@ -81,7 +81,7 @@
                     @csrf
                     <input id="comment-id" type="hidden" name="id">
                     <div class="d-flex m-3 align-items-center">
-                        <textarea name="comment" class="flex-fill fs-4 p-2" style="resize: none; overflow: scroll" placeholder="Start typing your new comment here..."></textarea>
+                        <textarea name="comment" class="flex-fill fs-4 p-2 rounded" style="resize: none" placeholder="Start typing your new comment here..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-custom mx-auto py-2 px-4 fs-4 d-block rounded">Save comment</button>
                 </form>
@@ -123,7 +123,7 @@
 
     <iframe name="votar" style="display:none;"></iframe>
 
-    <div id="content" class="container-sm pb-5 mb-5">
+    <div id="content" class="container-fluid pb-5 mb-5">
       <div class="search-tags col-10 col-md-8 gap-2 my-4 mx-auto row">
         <div class="tag col" >Action</div>
         <div class="tag col">Strategy</div>
@@ -136,7 +136,7 @@
         <div id="btn-page-container" class="container mx-auto d-flex justify-content-center gap-2 mb-3">
         </div>
 
-      <div id="search-list" class="container mx-auto row justify-content-evenly gap-4 gy-3 gy-md-5">
+      <div id="search-list" class="container-fluid mx-auto row justify-content-evenly gap-4 gy-3 gy-md-5">
 
 {{--        @foreach($items as $item)--}}
 {{--        <div class="item col-11 col-md-3 p-4" onclick="showDesc('{{ json_encode($item) }}')">--}}

@@ -3,7 +3,7 @@
 @php( $items = \App\Models\Item::all() )
 
 @section('styles')
-  <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
+<link href="{{ asset('css/vendorOrders.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -32,44 +32,31 @@
 
       <iframe name="votar" style="display:none;"></iframe>
 
-    @foreach($items as $item)
-    <div class="item row my-5 p-3">
-      <div class="col-3">
-        <img src="{{ $item->img_path }}" class="rounded" style="transform: translateY(-50%); position: relative; top: 50%"/>
-      </div>
-      <div class="col gx-5">
-        <div class="row">
-          <div class="col-7 fs-2 my-auto">{{ $item->name }}</div>
-          <div class="col-3 fs-2 my-auto text-end text-nowrap">{{ $item->price }} kzt</div>
-          <button class="col btn btn-outline-dark rounded fs-3 my-auto" onclick="window.location='vendor/new/'.concat({{ $item->id }})"><i class="fas fa-pen"></i></button>
-        <form method="POST" action="/items/{{ $item->id }}" class="col" target="votar">
-            @csrf
-            @method('DELETE')
-            <input type="hidden" name="id" value="{{ $item->id }}">
-            <button class="btn btn-outline-danger rounded ms-2 fs-2" type="submit">X</button>
-        </form>
-        </div>
+      <table class="container mx-auto" style="border: 2px dashed black; box-shadow: 5px 5px 5px #00000090">
+          <tr style="background-color: var(--accent-bg); border-bottom: 1px solid black ">
+              <td>Date</td>
+              <td>Customer</td>
+              <td>Address + number</td>
+              <td>Order</td>
+              <td>Price</td>
+              <td>Done</td>
+          </tr>
+        @foreach($items as $item)
+            <tr>
+                <td>{{ \Illuminate\Support\Carbon::now() }}</td>
+                <td>{{ \Illuminate\Support\Facades\Auth::user()->name }}</td>
+                <td>Address + number</td>
+                <td>Game1 - 2<br>Game2 - 4<br></td>
+                <td>31231 kzt</td>
+                <td><input type="checkbox" style="width: 25px; height: 25px"></td>
+            </tr>
+        @endforeach
+      </table>
 
-        <div id="search-tags" class="col-12 gap-2 my-3 row">
-          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Action')->count() == 1) tag-active @endif">Action</div>
-          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Strategy')->count() == 1) tag-active @endif">Strategy</div>
-          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Card')->count() == 1) tag-active @endif">Card</div>
-          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Roleplay')->count() == 1) tag-active @endif">Roleplay</div>
-          <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Family')->count() == 1) tag-active @endif">Family</div>
-        <div class="tag col fs-4 @if ($item->tags()->where('tag', '=', 'Random')->count() == 1) tag-active @endif">Random</div>
-        </div>
-
-        <div class="my-3 fs-4">Quantity: {{ $item->count }}</div>
-
-        <button class="btn btn-bright rounded fs-3 text-white" onclick="showComments({{ $item->id }})">Comments</button>
-
-      </div>
-    </div>
-    @endforeach
   </div>
 
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/vendor.js')  }}"></script>
+<script src="{{ asset('js/vendorOrders.js')  }}"></script>
 @endsection
