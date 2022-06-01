@@ -77,6 +77,7 @@
         </div>
         <div id="comments-dialog" class="modal-dialog modal-lg">
             <div class="modal-content rounded">
+                @if(\Illuminate\Support\Facades\Auth::check())
                 <form id="new-comment" method="post" action="{{ route('saveComment') }}">
                     @csrf
                     <input id="comment-id" type="hidden" name="id">
@@ -85,6 +86,7 @@
                     </div>
                     <button type="submit" class="btn btn-custom mx-auto py-2 px-4 fs-4 d-block rounded">Save comment</button>
                 </form>
+                @endif
                 <div id="desc-comments" class="modal-body rounded">
                 </div>
             </div>

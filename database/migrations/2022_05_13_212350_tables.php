@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->string('name', 100);
             $table->enum('role', ['customer', 'admin']);
@@ -61,6 +61,11 @@ return new class extends Migration
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->integer('count');
         });
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
     }
 
     /**
@@ -70,6 +75,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('password_resets');
         Schema::dropIfExists('cart_items');
         Schema::dropIfExists('comments');
         Schema::dropIfExists('orders');

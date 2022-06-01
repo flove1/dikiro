@@ -54,7 +54,7 @@ class UserController extends Controller
                 $file->move($path, $user->id.".".$file->getClientOriginalExtension());
                 $user->img_path = 'img/pfp/'.$user->id.'.'.$file->getClientOriginalExtension();
             }
-            if ($request->has('new_password') && $request->has('new_password_repeat') && $request->new_password == $request->new_password_repeat) {
+            if ($request->has('new_password') && $request->has('new_password_repeat') && strlen($request->new_password)>=8 && $request->new_password == $request->new_password_repeat) {
                 $user->password = Hash::make($request->new_password);
             }
             $user->save();

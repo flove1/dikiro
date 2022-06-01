@@ -100,6 +100,7 @@ function showCart() {
         .then(response => response.json())
         .then(response => {
             $("#cart-container").empty();
+            $("#sum").text('0');
             for (let i=0; i<response.length; i++) {
                 $("#cart-container").append(
                     `<div id="cart-${response[i].id}" class="cart-item row px-3 py-4">\
