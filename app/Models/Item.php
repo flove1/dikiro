@@ -33,7 +33,6 @@ class Item extends Model
 //        if(!$file->isValid()) {
 //            return response()->json(['invalid_file_upload'], 400);
 //        }
-        $path = public_path() . '/img/';
 
         $statement = DB::select("SHOW TABLE STATUS LIKE 'items'");
         if ($request->has('id')) {
@@ -50,9 +49,10 @@ class Item extends Model
         $item->count = $request->count;
         $item->desc = $request->desc;
         if($request->hasFile('image')) {
+            $path = public_path() . '/img/items/';
             $file = $request->file('image');
             $file->move($path, $id.".".$file->getClientOriginalExtension());
-            $item->img_path = 'img/'.$id.'.'.$file->getClientOriginalExtension();
+            $item->img_path = 'img/items/'.$id.'.'.$file->getClientOriginalExtension();
         }
 
         $item->save();

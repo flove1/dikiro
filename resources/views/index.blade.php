@@ -13,7 +13,7 @@
     </div>
 
     <div id="desc-modal" class="modal fade my-3" tabindex="-1" >
-        <div class="modal-dialog modal-xl">
+        <div id="desc" class="modal-dialog modal-xl">
             <div class="modal-content rounded">
                 <div class="modal-header py-4">
                     <h2 class="ms-4">Description:</h2>
@@ -25,7 +25,7 @@
 {{--                            <div id="desc-images" class="col-4">--}}
 {{--                            </div>--}}
                             <div id="desc-image-container" class="col-12" style="transform: translateY(-50%); position: relative; top: 50%">
-                                <div id="desc-image">
+                                <div id="desc-image" class="text-center">
                                     <img class="rounded" src="" alt="">
                                 </div>
                             </div>
@@ -60,15 +60,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="row gap-3">
-                        <button id="desc-add" type="button" class="col btn fs-4 py-3 px-5 text-nowrap ">Add to cart</button>
+                <div class="modal-footer" >
+                    @if (\Illuminate\Support\Facades\Auth::check())
+                    <div class="flex-fill gap-3">
+                        <form method="post" class="d-flex justify-content-end align-items-center" action="/cart" target="votar">
+                            @csrf
+                            @method('POST')
+                            <input id="cart-item-count" class="rounded py-2 px-1 col-1 me-2 text-center fs-5" type="text" name="count" placeholder="Count...">
+                            <input id="cart-item-id" type="hidden" name="id">
+                            <button id="desc-add" type="submit" class="btn fs-4 py-3 px-5 text-nowrap ">Add to cart</button>
+                        </form>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
         <div id="comments-dialog" class="modal-dialog modal-lg">
             <div class="modal-content rounded">
+                <form id="new-comment" method="post" action="/comments">
+                    @csrf
+                    <input id="comment-id" type="hidden" name="id">
+                    <div class="d-flex m-3 align-items-center">
+                        <textarea name="comment" class="flex-fill fs-4 p-2" style="resize: none; overflow: scroll" placeholder="Start typing your new comment here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom mx-auto py-2 px-4 fs-4 d-block rounded">Save comment</button>
+                </form>
                 <div id="desc-comments" class="modal-body rounded">
                 </div>
             </div>
@@ -80,40 +96,16 @@
             <div class="modal-content rounded">
                 <div class="modal-header p-3">
                     <h2 class="my-2 mx-4">Cart</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: relative; right: 25px"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid row gy-3 mx-auto">
-
-                        @foreach($items as $item)
-
-                        <div class="cart-item row px-3 py-4">
-                            <div class="col-3">
-                                <img src="{{ $item->img_path }}" class="rounded" style="transform: translateY(-50%); position: relative; top: 50%"/>
-                            </div>
-                            <div class="col gx-5 align-items-center d-flex">
-                                <div class="row flex-fill">
-                                    <div class="col-6 fs-2 my-auto">{{ $item->name }}</div>
-                                    <div class="col my-auto text-end text-nowrap">
-                                        <span class="fs-4 text-end fw-bold">{{ $item->price }}</span>
-                                        <span class="fs-5 text-end "> kzt</span>
-                                        <span class="fs-4 text-end "> * </span>
-                                        <span class="fs-4 text-end fw-bold">{{ $item->count }}</span>
-                                        <span class="fs-5 text-end "> pcs</span>
-                                    </div>
-                                    <button class="col btn btn-outline-danger rounded ms-2 fs-2" type="submit">X</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        @endforeach
-                    </div>
+                    <div id="cart-container" class="container-fluid row gy-3 mx-auto"></div>
                 </div>
                 <div class="modal-footer">
                     <div class="row gap-3 align-items-center">
                         <div class="col text-nowrap">
                             <span class="fs-4 me-1">Total of:</span>
-                            <span class="fs-4 fw-bold">1111102</span>
+                            <span id="sum" class="fs-4 fw-bold">0</span>
                             <span class="fs-5"> kzt</span>
                         </div>
                         <button id="desc-buy" type="button" class="col btn py-2 px-4 fs-3 text-nowrap fw-bold">Buy now</button>
@@ -123,12 +115,13 @@
         </div>
     </div>
 
-    <div id="cart" class="rounded-circle" onclick="showCart()">
-        <div id="cart-number" class="rounded-circle">
-            <div>2</div>
+    @if (\Illuminate\Support\Facades\Auth::check())
+        <div id="cart" class="rounded-circle" onclick="showCart()">
+            <div id="cart-symbol"><i class="fa-solid fa-cart-shopping"></i></div>
         </div>
-        <div id="cart-symbol"><i class="fa-solid fa-cart-shopping"></i></div>
-    </div>
+    @endif
+
+    <iframe name="votar" style="display:none;"></iframe>
 
     <div id="content" class="container-sm pb-5 mb-5">
       <div class="search-tags col-10 col-md-8 gap-2 my-4 mx-auto row">
@@ -141,9 +134,6 @@
       </div>
 
         <div id="btn-page-container" class="container mx-auto d-flex justify-content-center gap-2 mb-3">
-            @for($i = 1; $i <= ceil($items->count()/20); $i++)
-                <button class="btn btn-page px-3" onclick="showItems(this, {{  ($i-1)*20 }}, {{ ($items->count()-($i-1)*20)>20?20:($items->count()-($i-1)*20)%20 }})">{{ $i }}</button>
-            @endfor
         </div>
 
       <div id="search-list" class="container mx-auto row justify-content-evenly gap-4 gy-3 gy-md-5">

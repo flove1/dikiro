@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password', 100);
             $table->string('name', 100);
             $table->enum('role', ['customer', 'admin']);
+            $table->string('img_path')->default('img/pfp/default.jpg');
         });
         Schema::create('items', function (Blueprint $table) {
             $table->id();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('count');
             $table->text('desc');
-            $table->string('img_path');
+            $table->string('img_path')->default('img/items/default.png');
         });
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
@@ -52,6 +53,14 @@ return new class extends Migration
             $table->bigInteger('item_id', unsigned:true);
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
+        Schema::create('cart_items', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id', unsigned:true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('item_id', unsigned:true);
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->integer('count');
+        });
     }
 
     /**
@@ -61,6 +70,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('cart_items');
         Schema::dropIfExists('comments');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('tags');

@@ -36,14 +36,17 @@
                     <button class="btn btn-light rounded-pill rounded-start pe-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form> -->
                 @unless(Auth::check())
-                    <button onclick="window.location.href='/register'" class="btn btn-light rounded-pill text-nowrap px-3 py-3 me-2">Sign up</button>
-                    <button onclick="window.location.href='/login'" class="btn btn-light rounded-pill text-nowrap px-3 py-3 me-2">Login</button>
+                    <button onclick="window.location.href='/register'" class="btn btn-light rounded text-nowrap px-3 py-2 me-3 fs-5">Sign up</button>
+                    <button onclick="window.location.href='/login'" class="btn btn-light rounded text-nowrap px-3 py-2 fs-5">Login</button>
                 @else
-                <img class="rounded-circle mx-2"/>
-                <button class="btn btn-light fs-4 rounded"> Personal cabinet</button>
+                <button class="btn btn-light rounded me-2 my-2 fs-5" onclick="window.location='/cabinet'">Personal cabinet</button>
+                @if (Auth::user()->role == "admin")
+                    <button class="btn btn-light rounded me-2 my-2 fs-5" onclick="window.location='/vendor'">Admin page</button>
+                @endif
+                    <img class="rounded-circle mx-2" src="{{ asset(Auth::user()->img_path) }}"/>
                 <form class="d-flex mx-2" action="/logout" method="post">
                     @csrf
-                    <input class="btn btn-light rounded-pill text-nowrap fs-4 px-3" type="submit" value="Logout">
+                    <input class="btn btn-light rounded text-nowrap fs-5 my-2 px-3" type="submit" value="Logout">
                 </form>
                 @endunless
             </div>

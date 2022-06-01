@@ -1,0 +1,50 @@
+nav {
+    background-color: #000;
+    font-size: 21px;
+}
+nav span {
+    color: white;
+}
+.nav-link {
+    color: #7A7A7ACC;
+}
+.nav-link.active {
+    color: #FFFFFFCC;
+}
+.nav-link:focus {
+    color: #7A7A7ACC;
+}
+.nav-link:hover {
+    color: #FFFFFF;
+}
+.navbar img {
+    display: block;
+    background-color: #fff;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+#new-game-description {
+    min-height: 30vh;
+}
+
+#img-container {
+    border: 1.7px dashed rgb(91, 91, 91);
+    cursor: cell;
+    height: fit-content;
+}
+
+#img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+#edit-profile {
+    border: 2px dashed rgb(91, 91, 91);
+    background-color: #faf4ec;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px #00000020;
+}

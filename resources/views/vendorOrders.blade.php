@@ -15,36 +15,18 @@
       <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
         <ul class="navbar-nav text-center gap-1 gap-sm-5">
           <li class="nav-item">
-            <a class="nav-link active">Catalogue</a>
+            <a class="nav-link" href="/vendor">Catalogue</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/vendor/new">Add a game</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/vendor/orders">Orders</a>
+            <a class="nav-link active user-select-none">Orders</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-
-  <div class="modal fade my-3" tabindex="-1">
-    <div id="comments-dialog" class="modal-dialog modal-lg">
-      <div class="modal-content rounded">
-        <div id="desc-comments" class="modal-body rounded">
-          <div class="container-fluid row">
-            <div class="profile-image col-1 rounded-circle"></div>
-            <div class="col">
-              <div class="desc-comment-name">Name</div>
-              <div class="desc-comment-date">Date</div>
-              <p class="desc-comment">Comment</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div id="content" class="container my-5">
 
@@ -52,7 +34,7 @@
 
     @foreach($items as $item)
     <div class="item row my-5 p-3">
-      <div class="col-3 d-flex">
+      <div class="col-3">
         <img src="{{ $item->img_path }}" class="rounded" style="transform: translateY(-50%); position: relative; top: 50%"/>
       </div>
       <div class="col gx-5">
@@ -79,7 +61,7 @@
 
         <div class="my-3 fs-4">Quantity: {{ $item->count }}</div>
 
-        <button class="btn btn-bright rounded fs-3 text-white mb-3" onclick="showComments({{ $item->id }})">Comments</button>
+        <button class="btn btn-bright rounded fs-3 text-white" onclick="showComments({{ $item->id }})">Comments</button>
 
       </div>
     </div>

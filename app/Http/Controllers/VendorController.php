@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -21,7 +22,7 @@ class VendorController extends Controller
             return view("vendor");
         }
         else {
-            return view("index");
+            return redirect('/');
         }
     }
 
@@ -34,20 +35,33 @@ class VendorController extends Controller
             else {
                 return view("vendorNew");
             }
-            }
+        }
         else {
-            return view("index");
+            return redirect('/');
+        }
+    }
+
+    public function vendorOrders() {
+        if (Auth::user()->role == "admin") {
+            return view('vendorOrders');
+        }
+        else {
+            return redirect('/');
         }
     }
 
     public function newItem(Request $request) {
-        Item::store($request);
-        return view('vendor');
+        if (Auth::user()->role == 'admin') {
+            Item::store($request);
+            return redirect('/vendor');
+        }
+        return redirect('/');
     }
 
     public static function vendorDelete($id)
     {
         if (Auth::check()) {
+            File::delete(Item::find($id)->img_path);
             Item::find($id)->delete();
             return response('succ', 200);
         }
